@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="230" height="280" viewBox="0 0 230 280">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#121a28"/>
+      <stop offset="100%" stop-color="#0a0e16"/>
+    </linearGradient>
+    <linearGradient id="text" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#22d3ee"/>
+      <stop offset="100%" stop-color="#34e0a8"/>
+    </linearGradient>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#1e2a3d" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="230" height="280" fill="url(#bg)"/>
+  <rect width="230" height="280" fill="url(#grid)" opacity="0.5"/>
+  <text x="115" y="168" font-family="'JetBrains Mono', monospace" font-size="96" font-weight="800"
+        fill="url(#text)" text-anchor="middle">TS</text>
+</svg>

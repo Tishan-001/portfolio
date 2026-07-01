@@ -1,0 +1,8 @@
+---
+const { num, title } = Astro.props;
+---
+<div class="reveal flex items-baseline gap-4 mb-10">
+  <span class="font-mono text-[13px] text-accent">{num}</span>
+  <h2 class="font-mono font-extrabold tracking-[-1px] text-[clamp(24px,4vw,34px)]">{title}</h2>
+  <span class="divider-draw flex-1 h-px bg-gradient-to-r from-accent/60 via-line to-transparent"></span>
+</div>

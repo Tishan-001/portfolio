@@ -1,0 +1,21 @@
+{
+  "name": "tishan-portfolio",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Tishan Shamika portfolio",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^7.0.2",
+    "gsap": "^3.12.5"
+  },
+  "devDependencies": {
+    "@astrojs/tailwind": "^5.1.2",
+    "tailwindcss": "^3.4.13"
+  }
+}

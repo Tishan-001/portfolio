@@ -1,0 +1,204 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --c-bg: #0a0e16;
+  --c-bg-2: #0e1420;
+  --c-panel: #121a28;
+  --c-line: #1e2a3d;
+  --c-ink: #e6edf6;
+  --c-muted: #8b9bb4;
+  --c-dim: #5d6b82;
+  --grid-line: #1e2a3d;
+}
+
+html.light {
+  color-scheme: light;
+  --c-bg: #f7f9fc;
+  --c-bg-2: #eef2f8;
+  --c-panel: #ffffff;
+  --c-line: #d8e0ec;
+  --c-ink: #0d1726;
+  --c-muted: #4a5a72;
+  --c-dim: #8493a8;
+  --grid-line: #dce3ee;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--c-bg);
+  color: var(--c-ink);
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  transition: background-color .35s, color .35s;
+}
+
+::selection { background: #22d3ee; color: #04121a; }
+
+/* custom scrollbar */
+::-webkit-scrollbar { width: 11px; height: 11px; }
+::-webkit-scrollbar-track { background: var(--c-bg); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--c-line), var(--c-dim));
+  border: 3px solid var(--c-bg);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover { background: linear-gradient(#22d3ee, #34e0a8); }
+html { scrollbar-color: var(--c-line) var(--c-bg); scrollbar-width: thin; }
+
+/* scroll progress bar (top of viewport) */
+#scroll-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  background: linear-gradient(90deg, #22d3ee, #34e0a8);
+  z-index: 60;
+  box-shadow: 0 0 12px rgba(34, 211, 238, .6);
+  will-change: transform;
+}
+
+/* animated gradient headline */
+.gradient-flow {
+  background: linear-gradient(110deg, #22d3ee, #34e0a8, #22d3ee);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient-pan 6s linear infinite;
+}
+@keyframes gradient-pan {
+  to { background-position: 220% 0; }
+}
+
+/* shine sweep on primary buttons */
+.btn-shine { position: relative; overflow: hidden; }
+.btn-shine::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-130%) skewX(-18deg);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .35), transparent);
+  transition: transform .7s ease;
+}
+.btn-shine:hover::after { transform: translateX(130%) skewX(-18deg); }
+
+/* magnetic elements get smoothed transform via JS */
+.magnetic { transition: transform .25s cubic-bezier(.2, .8, .2, 1); will-change: transform; }
+
+/* floating ambient orbs */
+.orb { position: absolute; border-radius: 50%; filter: blur(60px); pointer-events: none; }
+.float-slow { animation: float 9s ease-in-out infinite; }
+.float-slower { animation: float 13s ease-in-out infinite reverse; }
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(18px, -26px) scale(1.08); }
+}
+
+/* back-to-top */
+#to-top {
+  position: fixed;
+  right: 22px; bottom: 22px;
+  width: 44px; height: 44px;
+  display: grid; place-items: center;
+  border: 1px solid var(--c-line);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--c-panel) 80%, transparent);
+  backdrop-filter: blur(8px);
+  color: var(--c-muted);
+  z-index: 55;
+  opacity: 0;
+  transform: translateY(14px) scale(.9);
+  pointer-events: none;
+  transition: opacity .3s, transform .3s, color .2s, border-color .2s;
+}
+#to-top.show { opacity: 1; transform: none; pointer-events: auto; }
+#to-top:hover { color: #22d3ee; border-color: #22d3ee; transform: translateY(-2px); }
+
+/* ambient grid (behind everything) */
+.ambient-grid::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(900px 500px at 80% -5%, rgba(34, 211, 238, 0.10), transparent 60%),
+    radial-gradient(700px 500px at 0% 100%, rgba(52, 224, 168, 0.07), transparent 55%),
+    linear-gradient(var(--grid-line) 1px, transparent 1px) 0 0 / 100% 64px,
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px) 0 0 / 64px 100%;
+  opacity: 0.5;
+  mask-image: linear-gradient(to bottom, #000 0, transparent 78%);
+}
+
+/* particle canvas */
+#particles {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.cursor-blink {
+  display: inline-block;
+  width: 9px;
+  height: 17px;
+  background: #22d3ee;
+  vertical-align: -3px;
+  animation: blink 1s steps(2) infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+.pulse-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #34e0a8;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(52,224,168,.5); }
+  70% { box-shadow: 0 0 0 10px rgba(52,224,168,0); }
+  100% { box-shadow: 0 0 0 0 rgba(52,224,168,0); }
+}
+
+.avatar-aura {
+  border: 1px solid rgba(34, 211, 238, .3);
+  animation: aura 3s ease-in-out infinite;
+}
+@keyframes aura {
+  0% { box-shadow: 0 0 0 0 rgba(34,211,238,.25); opacity: 1; }
+  70% { box-shadow: 0 0 0 18px rgba(34,211,238,0); opacity: .4; }
+  100% { box-shadow: 0 0 0 0 rgba(34,211,238,0); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .avatar-aura { animation: none; box-shadow: 0 0 0 6px rgba(34,211,238,.12); }
+}
+
+/* GSAP reveal initial state — JS removes when in view.
+   Fallback: if JS/GSAP fails, show content. */
+.reveal { opacity: 0; transform: translateY(28px); }
+.no-js .reveal, .gsap-ready .reveal { } /* handled by GSAP */
+
+/* active nav link (set by scroll-spy) */
+.nav-link.is-active { color: var(--c-ink); }
+.nav-link.is-active::before { width: 100%; }
+
+/* animated section divider draw-in */
+.divider-draw { transform: scaleX(0); transform-origin: 0 50%; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+  .reveal { opacity: 1 !important; transform: none !important; }
+  .divider-draw { transform: none !important; }
+  #scroll-progress { display: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* 3D tilt cards */
+.tilt { transform-style: preserve-3d; transition: transform .15s ease-out; will-change: transform; }
+.tilt .tilt-inner { transform: translateZ(40px); }

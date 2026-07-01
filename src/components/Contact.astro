@@ -1,0 +1,133 @@
+---
+import { profile } from '../data/content.js';
+const year = new Date().getFullYear();
+---
+<section id="contact" class="relative z-10 py-20">
+  <div class="max-w-content mx-auto px-6">
+    <div class="reveal text-center border border-line rounded-[20px] bg-gradient-to-b from-panel to-bg-2 px-8 py-[60px]">
+      <div class="font-mono text-[13px] text-accent tracking-wide flex items-center justify-center gap-2.5 mb-5">
+        <span class="pulse-dot"></span> LET'S BUILD SOMETHING
+      </div>
+      <h2 class="font-mono font-extrabold tracking-[-1.5px] text-[clamp(26px,5vw,42px)] mb-3.5">Have a project in mind?</h2>
+      <p class="text-muted max-w-[480px] mx-auto mb-7">
+        I'm open to new opportunities, collaborations and interesting engineering problems. The fastest way to reach me is email - I usually reply within a day.
+      </p>
+      <a href={`mailto:${profile.email}`} class="font-mono text-[14px] px-5 py-3 rounded-[10px] bg-accent text-[#04121a] font-bold hover:-translate-y-0.5 transition-transform inline-block">{profile.email}</a>
+
+      <!-- Contact form. Works two ways:
+           1) Default: opens the visitor's mail app pre-filled (no backend needed).
+           2) For a real inbox: create a free form at https://formspree.io,
+              then replace action="" with action="https://formspree.io/f/yourID"
+              and set data-mode="post" on the <form>. -->
+      <form id="contact-form" class="mt-10 max-w-[520px] mx-auto text-left" data-mode="mailto" action="" method="POST">
+        <div class="grid sm:grid-cols-2 gap-3.5 mb-3.5">
+          <div>
+            <label for="cf-name" class="font-mono text-[11px] text-dim block mb-1.5">name</label>
+            <input id="cf-name" name="name" type="text" required
+              class="w-full bg-bg-2 border border-line rounded-[10px] px-3.5 py-2.5 text-[14px] text-ink placeholder:text-dim focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20 transition" placeholder="Your name" />
+          </div>
+          <div>
+            <label for="cf-email" class="font-mono text-[11px] text-dim block mb-1.5">email</label>
+            <input id="cf-email" name="email" type="email" required
+              class="w-full bg-bg-2 border border-line rounded-[10px] px-3.5 py-2.5 text-[14px] text-ink placeholder:text-dim focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20 transition" placeholder="you@example.com" />
+          </div>
+        </div>
+        <div class="mb-4">
+          <label for="cf-msg" class="font-mono text-[11px] text-dim block mb-1.5">message</label>
+          <textarea id="cf-msg" name="message" rows="4" required
+            class="w-full bg-bg-2 border border-line rounded-[10px] px-3.5 py-2.5 text-[14px] text-ink placeholder:text-dim focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20 transition resize-y" placeholder="Tell me about your project or role…"></textarea>
+        </div>
+        <button type="submit"
+          class="font-mono text-[14px] w-full sm:w-auto px-6 py-3 rounded-[10px] bg-accent text-[#04121a] font-bold hover:-translate-y-0.5 transition-transform inline-flex items-center justify-center gap-2">
+          Send message
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+        <p id="cf-status" class="font-mono text-[12.5px] text-accent-2 mt-3 h-4" role="status" aria-live="polite"></p>
+      </form>
+
+      <div class="h-px bg-line my-9 max-w-[520px] mx-auto"></div>
+      <div class="flex gap-3.5 justify-center flex-wrap mt-8">
+        <a class="soc" href={profile.socials.github} target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-1.7c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11 11 0 0 1 6 0C18.3 4.7 19.3 5 19.3 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+        </a>
+        <a class="soc" href={profile.socials.linkedin} target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.4 20.4h-3.6v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9v5.7H9.2V9h3.4v1.6h.1c.5-.9 1.7-1.9 3.4-1.9 3.6 0 4.3 2.4 4.3 5.5v6.2zM5.3 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2zM7.1 20.4H3.5V9h3.6v11.4zM22.2 0H1.8C.8 0 0 .8 0 1.7v20.6c0 .9.8 1.7 1.8 1.7h20.4c1 0 1.8-.8 1.8-1.7V1.7c0-.9-.8-1.7-1.8-1.7z"/></svg>
+        </a>
+        <a class="soc" href={profile.socials.x} target="_blank" rel="noopener" aria-label="X">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.2 2.3h3.3l-7.2 8.2L23 21.7h-6.6l-5.2-6.8-6 6.8H1.9l7.7-8.8L1 2.3h6.8l4.7 6.2 5.7-6.2zm-1.2 17.4h1.8L7.1 4.1H5.2L17 19.7z"/></svg>
+        </a>
+        <a class="soc" href={profile.socials.instagram} target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.3 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.3-2.2-.4a3.8 3.8 0 0 1-1.4-.9 3.8 3.8 0 0 1-.9-1.4c-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.3-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.1-1.1.1-1.7.2-2.1.4-.5.2-.9.4-1.3.8-.4.4-.6.8-.8 1.3-.2.4-.3 1-.4 2.1-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c.1 1.1.2 1.7.4 2.1.2.5.4.9.8 1.3.4.4.8.6 1.3.8.4.2 1 .3 2.1.4 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1.1-.1 1.7-.2 2.1-.4.5-.2.9-.4 1.3-.8.4-.4.6-.8.8-1.3.2-.4.3-1 .4-2.1.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c-.1-1.1-.2-1.7-.4-2.1a3.5 3.5 0 0 0-.8-1.3 3.5 3.5 0 0 0-1.3-.8c-.4-.2-1-.3-2.1-.4-1.2-.1-1.6-.1-4.7-.1zm0 3.1a4.9 4.9 0 1 1 0 9.8 4.9 4.9 0 0 1 0-9.8zm0 8a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4zm6.3-8.2a1.1 1.1 0 1 1-2.3 0 1.1 1.1 0 0 1 2.3 0z"/></svg>
+        </a>
+        <a class="soc" href={`mailto:${profile.email}`} aria-label="Email">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 4h20a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zm10 7L3.3 5.5 2.6 6.7 12 13l9.4-6.3-.7-1.2L12 11z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="relative z-10 text-center py-10 font-mono text-[12.5px] text-dim border-t border-line mt-10">
+  <div class="max-w-content mx-auto px-6">
+    Designed &amp; built by <span class="bg-gradient-to-r from-accent to-accent-2 bg-clip-text text-transparent">{profile.name}</span> · {year}<br />
+    <span class="text-dim">"{profile.philosophy}"</span>
+  </div>
+</footer>
+
+<style>
+  .soc {
+    width: 46px; height: 46px;
+    display: grid; place-items: center;
+    border: 1px solid var(--c-line);
+    border-radius: 12px;
+    color: var(--c-muted);
+    transition: all .25s;
+  }
+  .soc:hover { color: #22d3ee; border-color: #22d3ee; transform: translateY(-3px); }
+  .soc svg { width: 20px; height: 20px; }
+</style>
+
+<script define:vars={{ email: profile.email }}>
+  const form = document.getElementById('contact-form');
+  const status = document.getElementById('cf-status');
+
+  form?.addEventListener('submit', async (e) => {
+    const mode = form.getAttribute('data-mode');
+    const data = new FormData(form);
+    const name = (data.get('name') || '').toString().trim();
+    const from = (data.get('email') || '').toString().trim();
+    const message = (data.get('message') || '').toString().trim();
+
+    if (mode === 'mailto') {
+      // No backend: open the visitor's mail client pre-filled.
+      e.preventDefault();
+      const subject = encodeURIComponent(`Portfolio enquiry from ${name}`);
+      const body = encodeURIComponent(`${message}\n\n— ${name} (${from})`);
+      window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+      status.textContent = 'Opening your mail app…';
+      return;
+    }
+
+    // Formspree / POST mode: submit via fetch for an inline success state.
+    e.preventDefault();
+    status.style.color = '';
+    status.textContent = 'Sending…';
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { Accept: 'application/json' },
+      });
+      if (res.ok) {
+        form.reset();
+        status.textContent = "Thanks — I'll get back to you soon.";
+      } else {
+        status.style.color = '#f7b955';
+        status.textContent = 'Something went wrong. Email me directly instead.';
+      }
+    } catch {
+      status.style.color = '#f7b955';
+      status.textContent = 'Network error. Email me directly instead.';
+    }
+  });
+</script>

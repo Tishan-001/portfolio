@@ -1,0 +1,72 @@
+---
+import SectionHead from './SectionHead.astro';
+import { projects, profile } from '../data/content.js';
+---
+<section id="work" class="relative z-10 py-20">
+  <div class="max-w-content mx-auto px-6">
+    <SectionHead num="03" title="selected work" />
+    <div class="grid md:grid-cols-2 gap-[22px]" id="projGrid">
+      {projects.map((p) => (
+        <article class="reveal tilt-card group relative overflow-hidden border border-line rounded-[16px] bg-gradient-to-b from-panel to-bg-2 p-[26px] flex flex-col transition-colors duration-200 hover:border-accent">
+          <div class="spotlight pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300"></div>
+          <div class="tilt-inner relative flex flex-col h-full">
+            <div class="flex justify-between items-center mb-4">
+              <span class="text-accent text-[26px]">▣</span>
+              <span class="font-mono text-[11px] text-dim border border-line px-2.5 py-1 rounded-full">{p.lang}</span>
+            </div>
+            <h3 class="font-mono text-[18px] mb-2.5 tracking-[-.5px]">{p.title}</h3>
+            <p class="text-muted text-[14.5px] flex-1 mb-[18px]">{p.desc}</p>
+            <div class="flex flex-wrap gap-[7px] mb-[18px]">
+              {p.tags.map((t) => (
+                <span class="font-mono text-[11px] text-accent-2 bg-accent-2/[.08] border border-accent-2/20 px-2.5 py-0.5 rounded-md">{t}</span>
+              ))}
+            </div>
+            <div class="flex gap-[18px] font-mono text-[13px]">
+              {p.links.map((l) => (
+                <a href={l.url} target="_blank" rel="noopener" class="text-muted hover:text-accent transition-colors flex items-center gap-1.5">⌘ {l.label}</a>
+              ))}
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="reveal text-center mt-9">
+      <a href={`${profile.socials.github}?tab=repositories`} target="_blank" rel="noopener" class="font-mono text-[14px] px-5 py-3 rounded-[10px] border border-line text-ink hover:border-accent hover:text-accent transition-colors inline-block">
+        Browse all 46 repositories →
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .spotlight {
+    background: radial-gradient(400px 200px at var(--mx, 50%) var(--my, 0%), rgba(34, 211, 238, .10), transparent 70%);
+  }
+</style>
+
+<script>
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll<HTMLElement>('.tilt-card').forEach((card) => {
+    const spot = card.querySelector<HTMLElement>('.spotlight');
+    card.addEventListener('mousemove', (e: MouseEvent) => {
+      const r = card.getBoundingClientRect();
+      const x = e.clientX - r.left;
+      const y = e.clientY - r.top;
+      if (spot) {
+        spot.style.setProperty('--mx', x + 'px');
+        spot.style.setProperty('--my', y + 'px');
+        spot.style.opacity = '1';
+      }
+      if (!reduce) {
+        const rx = ((y / r.height) - 0.5) * -8;
+        const ry = ((x / r.width) - 0.5) * 8;
+        card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+      }
+    });
+    card.addEventListener('mouseleave', () => {
+      if (spot) spot.style.opacity = '0';
+      card.style.transform = '';
+    });
+  });
+</script>
