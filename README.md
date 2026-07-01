@@ -1,51 +1,71 @@
 # Tishan Shamika — Portfolio
 
-A fast, single-page developer portfolio built with **Astro**, **Tailwind CSS**, and **GSAP + ScrollTrigger**. Ships almost no JavaScript by default; animation runs only where it's needed.
+A fast, single-page developer portfolio built with **Astro**, **Tailwind CSS**, and **GSAP + ScrollTrigger**. Ships almost no JavaScript by default — animation and interactivity are added only where they're needed.
+
+**Live site:** [tishan-001.github.io](https://tishan-001.github.io)
 
 ## Features
 
-- **Animated boot terminal** in the hero that types out a `Developer` class
-- **Hero headshot** with gradient glow + automatic monogram fallback
-- **Light / dark toggle** with no-flash load and saved preference
-- **Downloadable CV** button in the hero
-- **Contact form** that works with zero backend (mailto), or POSTs to Formspree
-- **Particle-network background** (canvas, auto-paused for reduced-motion)
-- **3D tilt project cards** with a cursor-tracking spotlight
-- **GSAP scroll reveals + ambient parallax**
-- Fully responsive, keyboard-accessible, `prefers-reduced-motion` respected
-- All content lives in **one editable file**: `src/data/content.js`
+- Animated boot-terminal hero effect that types out a `Developer` class
+- Hero headshot with gradient glow and automatic monogram fallback
+- Light / dark theme toggle with no-flash load and saved preference
+- Downloadable CV button
+- Contact form wired to [Formspree](https://formspree.io) for zero-backend email delivery
+- Canvas-based particle-network background, auto-paused for reduced motion
+- 3D tilt project cards with a cursor-tracking spotlight
+- GSAP scroll reveals and ambient parallax
+- Fully responsive, keyboard-accessible, and respects `prefers-reduced-motion`
+- All content centralized in one file: `src/data/content.js`
 
-## Add your assets
+## Tech Stack
 
-Place these in the `public/` folder before deploying:
+| Layer      | Choice                  |
+| ---------- | ----------------------- |
+| Framework  | Astro 7                 |
+| Styling    | Tailwind CSS 3          |
+| Animation  | GSAP 3 + ScrollTrigger  |
+| Fonts      | JetBrains Mono, Inter   |
+| Forms      | Formspree               |
 
-| File             | Used for                                              |
-| ---------------- | ----------------------------------------------------- |
-| `public/cv.pdf`  | The hero **Download CV** button                       |
-| `public/avatar.jpg` | The hero headshot (falls back to a "TS" monogram)  |
+## Project Structure
 
-## Contact form
+```
+src/
+├── components/     # Nav, Hero, About, Stack, Projects, Timeline, Contact
+├── data/
+│   └── content.js  # Single source of truth for all site copy
+├── layouts/
+│   └── Base.astro
+├── pages/
+│   └── index.astro
+└── styles/
+    └── global.css
+```
 
-By default the form opens the visitor's mail app pre-filled — no server needed. For messages delivered straight to your inbox:
-
-1. Create a free form at [formspree.io](https://formspree.io) and copy your form ID.
-2. In `src/components/Contact.astro`, set `action="https://formspree.io/f/yourID"` and change `data-mode="mailto"` to `data-mode="post"` on the `<form>`.
-
-## Quick start
+## Getting Started
 
 ```bash
 npm install
 npm run dev      # http://localhost:4321
 ```
 
-## Build
+### Build & Preview
 
 ```bash
 npm run build    # output in ./dist
-npm run preview  # preview the production build
+npm run preview  # preview the production build locally
 ```
 
-## Editing content
+## Adding Your Assets
+
+Place these in the `public/` folder before deploying:
+
+| File                | Used for                                             |
+| ------------------- | ----------------------------------------------------- |
+| `public/cv.pdf`     | The hero **Download CV** button                       |
+| `public/avatar.jpg` | The hero headshot (falls back to a "TS" monogram)      |
+
+## Editing Content
 
 Open `src/data/content.js` and edit:
 
@@ -54,32 +74,31 @@ Open `src/data/content.js` and edit:
 - `projects` — project cards (title, language, description, tags, links)
 - `timeline` — experience & education
 
-No component edits needed for normal updates.
+No component edits are required for normal content updates.
 
-## Deploy
+## Contact Form
 
-### GitHub Pages (recommended, free)
+The contact form (`src/components/Contact.astro`) submits directly to Formspree via `fetch`, showing an inline success or error status without leaving the page. To point it at your own form:
 
-1. Create a repo named **`Tishan-001.github.io`** and push this project to the `main` branch.
+1. Create a free form at [formspree.io](https://formspree.io) and copy your form ID.
+2. Update the `action` attribute on the `<form>` in `Contact.astro` to `https://formspree.io/f/yourID`.
+
+## Deployment
+
+### GitHub Pages (recommended)
+
+This project ships with a GitHub Actions workflow (`.github/workflows/deploy.yml`) that builds and deploys automatically on every push to `main`.
+
+1. Push this project to a repo named **`Tishan-001.github.io`** (or update `site` in `astro.config.mjs` to match your repo name).
 2. In the repo: **Settings → Pages → Source → GitHub Actions**.
-3. The included workflow (`.github/workflows/deploy.yml`) builds and deploys automatically on every push.
-4. Your site goes live at `https://tishan-001.github.io`.
+3. Your site goes live at `https://tishan-001.github.io`.
 
-> If you instead use a **project repo** (e.g. `portfolio`), set `base: '/portfolio'` in `astro.config.mjs` and update `site` accordingly.
+> If deploying to a **project repo** instead (e.g. `portfolio`), set `base: '/portfolio'` in `astro.config.mjs` and update `site` accordingly.
 
 ### Netlify / Vercel
 
 - Build command: `npm run build`
 - Publish / output directory: `dist`
-
-## Tech
-
-| Layer      | Choice                |
-| ---------- | --------------------- |
-| Framework  | Astro 4               |
-| Styling    | Tailwind CSS 3        |
-| Animation  | GSAP 3 + ScrollTrigger|
-| Fonts      | JetBrains Mono, Inter |
 
 ## License
 

@@ -14,12 +14,7 @@ const year = new Date().getFullYear();
       </p>
       <a href={`mailto:${profile.email}`} class="font-mono text-[14px] px-5 py-3 rounded-[10px] bg-accent text-[#04121a] font-bold hover:-translate-y-0.5 transition-transform inline-block">{profile.email}</a>
 
-      <!-- Contact form. Works two ways:
-           1) Default: opens the visitor's mail app pre-filled (no backend needed).
-           2) For a real inbox: create a free form at https://formspree.io,
-              then replace action="" with action="https://formspree.io/f/yourID"
-              and set data-mode="post" on the <form>. -->
-      <form id="contact-form" class="mt-10 max-w-[520px] mx-auto text-left" data-mode="mailto" action="" method="POST">
+      <form id="contact-form" class="mt-10 max-w-[520px] mx-auto text-left" data-mode="post" action="https://formspree.io/f/mgojnpdv" method="POST">
         <div class="grid sm:grid-cols-2 gap-3.5 mb-3.5">
           <div>
             <label for="cf-name" class="font-mono text-[11px] text-dim block mb-1.5">name</label>
