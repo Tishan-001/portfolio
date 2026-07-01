@@ -1,5 +1,5 @@
 import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
+import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
@@ -8,5 +8,7 @@ export default defineConfig({
   // If deploying to a project repo (e.g. /portfolio), also add:
   //   base: '/portfolio',
   site: 'https://tishan-001.github.io',
-  integrations: [tailwind()],
+  vite: {
+    plugins: [tailwindcss()],
+  },
 });

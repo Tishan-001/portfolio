@@ -1,6 +1,22 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-bg: var(--c-bg);
+  --color-bg-2: var(--c-bg-2);
+  --color-panel: var(--c-panel);
+  --color-line: var(--c-line);
+  --color-ink: var(--c-ink);
+  --color-muted: var(--c-muted);
+  --color-dim: var(--c-dim);
+  --color-accent: #22d3ee;
+  --color-accent-2: #34e0a8;
+  --color-warn: #f7b955;
+
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-sans: Inter, system-ui, sans-serif;
+
+  --container-content: 1080px;
+}
 
 :root {
   color-scheme: dark;
