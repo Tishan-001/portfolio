@@ -2,7 +2,7 @@
 
 A fast, single-page developer portfolio built with **Astro**, **Tailwind CSS**, and **GSAP + ScrollTrigger**. Ships almost no JavaScript by default — animation and interactivity are added only where they're needed.
 
-**Live site:** [tishan-001.github.io](https://tishan-001.github.io)
+**Live site:** [tishan.qzz.io](https://tishan.qzz.io/)
 
 ## Features
 
