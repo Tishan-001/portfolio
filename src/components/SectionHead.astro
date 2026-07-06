@@ -1,8 +1,11 @@
 ---
 const { num, title } = Astro.props;
 ---
-<div class="reveal flex items-baseline gap-4 mb-10">
-  <span class="font-mono text-[13px] text-accent">{num}</span>
-  <h2 class="font-mono font-extrabold tracking-[-1px] text-[clamp(24px,4vw,34px)]">{title}</h2>
-  <span class="divider-draw flex-1 h-px bg-gradient-to-r from-accent/60 via-line to-transparent"></span>
+<div class="relative mb-12">
+  <span class="reveal ghost-parallax absolute -top-9 -left-2 font-display font-bold text-[clamp(70px,10vw,120px)] leading-none text-ghost select-none pointer-events-none" aria-hidden="true">{num}</span>
+  <div class="reveal relative flex items-baseline gap-4 pt-6">
+    <span class="font-mono text-[13px] text-accent">/{num}</span>
+    <h2 class="font-display font-bold tracking-[-0.02em] text-[clamp(28px,4.5vw,42px)]">{title}</h2>
+    <span class="divider-draw flex-1 h-px bg-gradient-to-r from-accent/60 via-accent-2/40 to-transparent"></span>
+  </div>
 </div>

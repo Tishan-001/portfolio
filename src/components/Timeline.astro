@@ -2,21 +2,22 @@
 import SectionHead from './SectionHead.astro';
 import { timeline } from '../data/content.js';
 ---
-<section id="journey" class="relative z-10 py-20">
+<section id="journey" class="relative z-10 py-24">
   <div class="max-w-content mx-auto px-6">
     <SectionHead num="04" title="journey" />
-    <div class="relative pl-[34px] before:content-[''] before:absolute before:left-[7px] before:top-1.5 before:bottom-1.5 before:w-px before:bg-gradient-to-b before:from-accent/70 before:via-line before:to-transparent">
+    <div id="tl" class="relative pl-[38px]">
+      <div class="tl-line" aria-hidden="true"><i id="tl-progress"></i></div>
       {timeline.map((t, i) => (
-        <div class="reveal group relative pb-[34px] last:pb-0">
-          <span class="node absolute -left-[34px] top-[5px] w-[15px] h-[15px] grid place-items-center rounded-full bg-bg border-2 border-accent transition-all duration-300 group-hover:shadow-[0_0_0_5px_rgba(34,211,238,.18)] group-hover:scale-110">
+        <div class="reveal group relative pb-10 last:pb-0">
+          <span class="node absolute -left-[38px] top-[5px] w-[16px] h-[16px] grid place-items-center rounded-full bg-bg border-2 border-accent transition-all duration-300 group-hover:shadow-[0_0_0_6px_rgba(34,211,238,.18)] group-hover:scale-110">
             {i === 0 && <span class="pulse-dot"></span>}
           </span>
-          <div class="font-mono text-[12.5px] text-accent">{t.when}</div>
-          <h3 class="text-[18px] mt-1.5 mb-0.5 transition-colors group-hover:text-accent">{t.title}</h3>
+          <div class="font-mono text-[12.5px] text-accent tracking-wide">{t.when}</div>
+          <h3 class="font-display font-semibold text-[19px] mt-1.5 mb-0.5 transition-colors group-hover:text-accent">{t.title}</h3>
           <div class="font-mono text-[13px] text-muted mb-2.5">{t.org}</div>
           <ul class="flex flex-col gap-1.5">
             {t.points.map((p) => (
-              <li class="text-muted text-[14.5px] pl-[18px] relative before:content-['–'] before:absolute before:left-0 before:text-dim">{p}</li>
+              <li class="text-muted text-[14.5px] pl-[18px] relative before:content-['–'] before:absolute before:left-0 before:text-accent-2/70">{p}</li>
             ))}
           </ul>
         </div>

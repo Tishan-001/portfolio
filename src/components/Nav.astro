@@ -1,9 +1,6 @@
----
-import { profile } from '../data/content.js';
----
-<nav id="nav" class="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-bg/70 border-b border-transparent transition-colors duration-300">
+<nav id="nav" class="fixed top-0 inset-x-0 z-50 glass border-b border-transparent">
   <div class="max-w-content mx-auto px-6 py-3.5 flex items-center justify-between">
-    <a href="#top" class="font-mono font-extrabold tracking-tight text-[15px]">
+    <a href="#top" class="font-display font-bold tracking-tight text-[16px]">
       tishan<span class="text-accent">.</span>sh<span class="cursor-blink ml-px" style="height:13px"></span>
     </a>
     <div class="hidden md:flex gap-7 font-mono text-[13px] text-muted">
@@ -49,7 +46,7 @@ import { profile } from '../data/content.js';
     position: absolute;
     left: 0; bottom: -4px;
     width: 0; height: 1px;
-    background: #22d3ee;
+    background: linear-gradient(90deg, #22d3ee, #8b7cf7);
     transition: width .25s;
   }
   .nav-link:hover::before { width: 100%; }
@@ -57,7 +54,18 @@ import { profile } from '../data/content.js';
 
 <script>
   const nav = document.getElementById('nav');
-  const onScroll = () => nav?.classList.toggle('border-line', window.scrollY > 20);
+
+  // Border on scroll + hide on scroll down / reveal on scroll up
+  let lastY = window.scrollY;
+  let menuOpen = false;
+  const onScroll = () => {
+    const y = window.scrollY;
+    nav?.classList.toggle('border-line', y > 20);
+    if (!menuOpen) {
+      nav?.classList.toggle('nav-hidden', y > 140 && y > lastY);
+    }
+    lastY = y;
+  };
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
@@ -83,16 +91,16 @@ import { profile } from '../data/content.js';
   const menu = document.getElementById('mobile-menu');
   const burger = menuBtn?.querySelector('.icon-burger');
   const close = menuBtn?.querySelector('.icon-close');
-  let open = false;
   function setMenu(next: boolean) {
-    open = next;
-    menu?.style.setProperty('grid-template-rows', open ? '1fr' : '0fr');
-    menu?.classList.toggle('border-line', open);
-    menuBtn?.setAttribute('aria-expanded', String(open));
-    menuBtn?.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-    burger?.classList.toggle('hidden', open);
-    close?.classList.toggle('hidden', !open);
+    menuOpen = next;
+    menu?.style.setProperty('grid-template-rows', menuOpen ? '1fr' : '0fr');
+    menu?.classList.toggle('border-line', menuOpen);
+    menuBtn?.setAttribute('aria-expanded', String(menuOpen));
+    menuBtn?.setAttribute('aria-label', menuOpen ? 'Close menu' : 'Open menu');
+    burger?.classList.toggle('hidden', menuOpen);
+    close?.classList.toggle('hidden', !menuOpen);
+    if (menuOpen) nav?.classList.remove('nav-hidden');
   }
-  menuBtn?.addEventListener('click', () => setMenu(!open));
+  menuBtn?.addEventListener('click', () => setMenu(!menuOpen));
   menu?.querySelectorAll('.m-link').forEach((a) => a.addEventListener('click', () => setMenu(false)));
 </script>

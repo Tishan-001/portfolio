@@ -2,27 +2,27 @@
 import SectionHead from './SectionHead.astro';
 import { profile } from '../data/content.js';
 ---
-<section id="about" class="relative z-10 py-20">
+<section id="about" class="relative z-10 py-24">
   <div class="max-w-content mx-auto px-6">
     <SectionHead num="01" title="whoami" />
     <div class="grid md:grid-cols-[1.4fr_1fr] gap-10">
       <div class="reveal">
-        <p class="text-muted text-[16px] mb-4">
-          I'm a <b class="text-ink font-semibold">Software Engineer at Codimite</b>, building things end-to-end - from a React interface down to the Linux box and CI/CD pipeline that ships it. Computer Engineering, University of Ruhuna, class of 2026.
+        <p class="text-muted text-[17px] leading-relaxed mb-5">
+          I'm a <b class="text-ink font-semibold">Software Engineer at Codimite</b>, building things end-to-end — from a React interface down to the Linux box and CI/CD pipeline that ships it. Computer Engineering, University of Ruhuna, class of 2026.
         </p>
-        <p class="text-muted text-[16px] mb-4">
+        <p class="text-muted text-[17px] leading-relaxed mb-5">
           I think in <b class="text-ink font-semibold">systems, not scripts</b>: clean architecture, secure APIs, infra that doesn't page you at 2am. Day to day that's Python, Go, .NET and TypeScript on the backend, Docker and GCP underneath, Nginx and Cloudflare at the edge.
         </p>
-        <p class="text-muted text-[16px]">
-          Started as an Associate Software Engineer, promoted within five months. My philosophy hasn't changed since: <i>{profile.philosophy.toLowerCase()}</i>
+        <p class="text-muted text-[17px] leading-relaxed">
+          Started as an Associate Software Engineer, promoted within five months. My philosophy hasn't changed since: <i class="text-accent-3">{profile.philosophy.toLowerCase()}</i>
         </p>
       </div>
-      <div class="reveal border border-line rounded-[14px] bg-panel p-6 font-mono text-[13.5px] self-start">
+      <div class="reveal conic-border border border-line rounded-2xl glass p-6 font-mono text-[13.5px] self-start">
         <div class="flex justify-between gap-4 py-2.5 border-b border-line"><span class="text-dim">role</span><span class="text-ink text-right">Software Engineer @ Codimite</span></div>
         <div class="flex justify-between gap-4 py-2.5 border-b border-line"><span class="text-dim">based in</span><span class="text-ink text-right">{profile.location}</span></div>
         <div class="flex justify-between gap-4 py-2.5 border-b border-line"><span class="text-dim">education</span><span class="text-ink text-right">BSc (Hons) Computer Engineering</span></div>
         <div class="flex justify-between gap-4 py-2.5 border-b border-line"><span class="text-dim">focus</span><span class="text-ink text-right">APIs · Cloud · CI/CD</span></div>
-        <div class="flex justify-between gap-4 py-2.5"><span class="text-dim">status</span><span class="text-accent-2 text-right">● building at Codimite</span></div>
+        <div class="flex justify-between gap-4 py-2.5"><span class="text-dim">status</span><span class="text-accent-3 text-right">● building at Codimite</span></div>
       </div>
     </div>
   </div>

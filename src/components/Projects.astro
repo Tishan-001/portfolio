@@ -2,28 +2,34 @@
 import SectionHead from './SectionHead.astro';
 import { projects, profile } from '../data/content.js';
 ---
-<section id="work" class="relative z-10 py-20">
+<section id="work" class="relative z-10 py-24">
   <div class="max-w-content mx-auto px-6">
     <SectionHead num="03" title="selected work" />
     <div class="grid md:grid-cols-2 gap-[22px]" id="projGrid">
-      {projects.map((p) => (
-        <article class="reveal tilt-card group relative overflow-hidden border border-line rounded-[16px] bg-gradient-to-b from-panel to-bg-2 p-[26px] flex flex-col transition-colors duration-200 hover:border-accent">
+      {projects.map((p, i) => (
+        <article class="reveal tilt-card conic-border group relative overflow-hidden border border-line rounded-2xl glass p-[26px] flex flex-col transition-colors duration-200 hover:border-accent/60">
           <div class="spotlight pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300"></div>
+          <span class="pointer-events-none absolute -right-3 -top-6 font-display font-bold text-[92px] leading-none text-ghost opacity-60 group-hover:opacity-100 transition-opacity" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
           <div class="tilt-inner relative flex flex-col h-full">
             <div class="flex justify-between items-center mb-4">
-              <span class="text-accent text-[26px]">▣</span>
+              <span class="grid place-items-center w-10 h-10 rounded-xl border border-line bg-bg-2 text-accent group-hover:text-accent-2 group-hover:border-accent/50 transition-colors">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              </span>
               <span class="font-mono text-[11px] text-dim border border-line px-2.5 py-1 rounded-full">{p.lang}</span>
             </div>
-            <h3 class="font-mono text-[18px] mb-2.5 tracking-[-.5px]">{p.title}</h3>
-            <p class="text-muted text-[14.5px] flex-1 mb-[18px]">{p.desc}</p>
+            <h3 class="font-display font-semibold text-[19px] mb-2.5 tracking-[-.02em] group-hover:text-accent transition-colors">{p.title}</h3>
+            <p class="text-muted text-[14.5px] leading-relaxed flex-1 mb-[18px]">{p.desc}</p>
             <div class="flex flex-wrap gap-[7px] mb-[18px]">
               {p.tags.map((t) => (
-                <span class="font-mono text-[11px] text-accent-2 bg-accent-2/[.08] border border-accent-2/20 px-2.5 py-0.5 rounded-md">{t}</span>
+                <span class="font-mono text-[11px] text-accent-3 bg-accent-3/[.08] border border-accent-3/20 px-2.5 py-0.5 rounded-md">{t}</span>
               ))}
             </div>
             <div class="flex gap-[18px] font-mono text-[13px]">
               {p.links.map((l) => (
-                <a href={l.url} target="_blank" rel="noopener" class="text-muted hover:text-accent transition-colors flex items-center gap-1.5">⌘ {l.label}</a>
+                <a href={l.url} target="_blank" rel="noopener" class="link-arrow text-muted hover:text-accent transition-colors inline-flex items-center gap-1.5">
+                  {l.label}
+                  <svg class="arr" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                </a>
               ))}
             </div>
           </div>
@@ -31,9 +37,9 @@ import { projects, profile } from '../data/content.js';
       ))}
     </div>
 
-    <div class="reveal text-center mt-9">
-      <a href={`${profile.socials.github}?tab=repositories`} target="_blank" rel="noopener" class="font-mono text-[14px] px-5 py-3 rounded-[10px] border border-line text-ink hover:border-accent hover:text-accent transition-colors inline-block">
-        Browse all 46 repositories →
+    <div class="reveal text-center mt-10">
+      <a href={`${profile.socials.github}?tab=repositories`} target="_blank" rel="noopener" class="magnetic font-mono text-[14px] px-6 py-3.5 rounded-xl border border-line text-ink hover:border-accent hover:text-accent transition-colors inline-block">
+        Browse all 46 repositories ↗
       </a>
     </div>
   </div>
@@ -41,8 +47,10 @@ import { projects, profile } from '../data/content.js';
 
 <style>
   .spotlight {
-    background: radial-gradient(400px 200px at var(--mx, 50%) var(--my, 0%), rgba(34, 211, 238, .10), transparent 70%);
+    background: radial-gradient(420px 220px at var(--mx, 50%) var(--my, 0%), rgba(139, 124, 247, .12), rgba(34, 211, 238, .06) 45%, transparent 70%);
   }
+  .link-arrow .arr { transition: transform .25s; }
+  .link-arrow:hover .arr { transform: translate(2px, -2px); }
 </style>
 
 <script>

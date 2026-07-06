@@ -1,28 +1,33 @@
 ---
 import { profile } from '../data/content.js';
+const [firstName, lastName] = profile.name.split(' ');
 ---
-<header id="top" class="relative z-10 pt-[150px] pb-24 overflow-hidden">
-  <div class="orb float-slow -z-10 -top-10 -left-16 w-72 h-72 bg-accent/[.12]"></div>
-  <div class="orb float-slower -z-10 top-40 right-0 w-80 h-80 bg-accent-2/[.10]"></div>
-  <div class="max-w-content mx-auto px-6">
-    <div class="grid lg:grid-cols-[1fr_auto] gap-12 items-start">
+<header id="top" class="relative z-10 min-h-[100svh] flex flex-col justify-center pt-[110px] pb-16 overflow-hidden">
+  <div class="max-w-content mx-auto px-6 w-full">
+    <div class="grid lg:grid-cols-[1fr_auto] gap-12 items-center">
       <div>
-        <div class="reveal font-mono text-[13px] text-accent tracking-wide flex items-center gap-2.5 mb-5">
+        <div class="hero-fade font-mono text-[13px] text-accent tracking-[.18em] flex items-center gap-2.5 mb-6">
           <span class="pulse-dot"></span> SOFTWARE ENGINEER @ CODIMITE · {profile.location.toUpperCase()}
         </div>
 
-        <h1 class="reveal font-mono font-extrabold leading-[1.02] tracking-[-2px] text-[clamp(38px,7vw,72px)]">
-          {profile.name}<br />
-          <span class="gradient-flow">builds &amp; ships</span> systems.
+        <h1 class="font-display font-bold leading-[0.98] tracking-[-0.035em] text-[clamp(46px,9vw,104px)]">
+          <span class="mask-line"><span class="inner hero-line">{firstName}</span></span>
+          <span class="mask-line"><span class="inner hero-line gradient-flow pb-2">{lastName}<span class="text-ink">.</span></span></span>
         </h1>
 
-        <p class="reveal mt-5 max-w-[560px] text-[18px] text-muted">{profile.blurb}</p>
+        <div class="hero-fade mt-6 font-mono text-[clamp(15px,2.2vw,20px)] text-muted flex items-center gap-3">
+          <span class="text-dim">&gt;</span>
+          <span id="scramble" class="text-ink" data-roles='["Full-Stack Engineer","Cloud-Native Builder","DevOps Practitioner","API Architect","Systems Thinker"]'>Full-Stack Engineer</span>
+          <span class="cursor-blink"></span>
+        </div>
 
-        <div class="reveal mt-6 flex flex-wrap gap-2.5 font-mono text-[12.5px]">
+        <p class="hero-fade mt-6 max-w-[560px] text-[17px] leading-relaxed text-muted">{profile.blurb}</p>
+
+        <div class="hero-fade mt-6 flex flex-wrap gap-2.5 font-mono text-[12.5px]">
           {profile.stats.map((s) => {
             const n = /^\d+$/.test(s.value) ? s.value : null;
             return (
-              <span class="border border-line bg-bg-2 px-3 py-1.5 rounded-full text-muted transition-colors hover:border-accent/50 hover:text-ink">
+              <span class="border border-line glass px-3 py-1.5 rounded-full text-muted transition-colors hover:border-accent/50 hover:text-ink">
                 {n
                   ? <b class="text-ink font-medium tabular-nums" data-count={n}>0</b>
                   : <b class="text-ink font-medium">{s.value}</b>} {s.label}
@@ -31,32 +36,31 @@ import { profile } from '../data/content.js';
           })}
         </div>
 
-        <div class="reveal mt-7 flex flex-wrap gap-3.5">
-          <a href="#work" class="magnetic btn-shine font-mono text-[14px] px-5 py-3 rounded-[10px] bg-accent text-[#04121a] font-bold shadow-[0_10px_30px_-10px_rgba(34,211,238,.7)] hover:shadow-[0_16px_40px_-10px_rgba(34,211,238,.85)] transition-shadow inline-flex items-center gap-2">View work ↓</a>
-          <a href={profile.cv} download class="magnetic font-mono text-[14px] px-5 py-3 rounded-[10px] border border-accent/40 text-accent hover:border-accent hover:bg-accent/[.06] transition-colors inline-flex items-center gap-2">
+        <div class="hero-fade mt-8 flex flex-wrap gap-3.5">
+          <a href="#work" class="magnetic btn-shine font-mono text-[14px] px-6 py-3.5 rounded-xl bg-accent text-[#04121a] font-bold shadow-[0_10px_30px_-10px_rgba(34,211,238,.7)] hover:shadow-[0_16px_44px_-10px_rgba(34,211,238,.9)] transition-shadow inline-flex items-center gap-2">View work ↓</a>
+          <a href={profile.cv} download class="magnetic font-mono text-[14px] px-6 py-3.5 rounded-xl border border-accent/40 text-accent hover:border-accent hover:bg-accent/[.06] transition-colors inline-flex items-center gap-2">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             Download CV
           </a>
-          <a href={profile.socials.github} target="_blank" rel="noopener" class="font-mono text-[14px] px-5 py-3 rounded-[10px] border border-line text-ink hover:border-accent hover:text-accent transition-colors">GitHub →</a>
+          <a href={profile.socials.github} target="_blank" rel="noopener" class="magnetic font-mono text-[14px] px-6 py-3.5 rounded-xl border border-line text-ink hover:border-accent-2 hover:text-accent-2 transition-colors">GitHub ↗</a>
         </div>
       </div>
 
-      <!-- headshot -->
-      <div class="reveal hidden lg:block relative shrink-0 mt-2">
-        <div class="avatar-aura absolute -inset-6 rounded-full"></div>
-        <div class="absolute -inset-3 rounded-full bg-gradient-to-br from-accent/20 to-accent-2/10 blur-xl"></div>
-        <div class="relative w-[250px] h-[250px] rounded-full overflow-hidden border border-line bg-panel">
-          <img src={profile.avatar} alt={`${profile.name} — portrait`} width="250" height="250" loading="eager"
+      <div class="hero-fade hidden lg:block relative shrink-0">
+        <div class="orbit-ring" aria-hidden="true"></div>
+        <div class="absolute -inset-4 rounded-full bg-gradient-to-br from-accent/20 via-accent-2/15 to-accent-3/10 blur-2xl" aria-hidden="true"></div>
+        <div class="relative w-[270px] h-[270px] rounded-full overflow-hidden border border-line bg-panel">
+          <img src={profile.avatar} alt={`${profile.name} — portrait`} width="270" height="270" loading="eager"
             class="w-full h-full object-cover"
             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
-          <div class="avatar-fallback w-full h-full hidden items-center justify-center font-mono text-[64px] text-dim bg-gradient-to-b from-panel to-bg-2">TS</div>
+          <div class="avatar-fallback w-full h-full hidden items-center justify-center font-display text-[68px] text-dim bg-gradient-to-b from-panel to-bg-2">TS</div>
         </div>
-        <span class="absolute -bottom-3 -right-3 font-mono text-[11px] bg-bg border border-line text-accent-2 px-3 py-1.5 rounded-full">● online</span>
+        <span class="absolute -bottom-2 -right-2 font-mono text-[11px] glass border border-line text-accent-3 px-3 py-1.5 rounded-full">● online</span>
       </div>
     </div>
 
     <!-- terminal -->
-    <div class="reveal mt-14 border border-line rounded-[14px] overflow-hidden bg-gradient-to-b from-panel to-bg-2 shadow-[0_30px_80px_-40px_rgba(0,0,0,.9)]">
+    <div class="hero-fade mt-14 conic-border border border-line rounded-2xl overflow-hidden glass shadow-[0_40px_100px_-50px_rgba(0,0,0,.9)]">
       <div class="flex items-center gap-2 px-4 py-3 border-b border-line bg-white/[.02]">
         <i class="w-3 h-3 rounded-full bg-[#ff5f57]"></i>
         <i class="w-3 h-3 rounded-full bg-[#febc2e]"></i>
@@ -65,6 +69,10 @@ import { profile } from '../data/content.js';
       </div>
       <div id="term" class="px-[22px] pt-[22px] pb-[26px] font-mono text-[13.5px] leading-[1.85] min-h-[230px]"></div>
     </div>
+
+    <div class="hero-fade mt-12 flex justify-center">
+      <a href="#about" aria-label="Scroll to about"><span class="scroll-hint"></span></a>
+    </div>
   </div>
 </header>
 
@@ -72,10 +80,10 @@ import { profile } from '../data/content.js';
   const lines = [
     '<span class="text-dim">// initializing developer profile...</span>',
     '<span class="text-accent">class</span> <span class="text-warn">Developer</span> {',
-    '&nbsp;&nbsp;role&nbsp;&nbsp;= <span class="text-accent-2">"Software Engineer @ Codimite"</span>;',
-    '&nbsp;&nbsp;stack = [<span class="text-accent-2">"Python"</span>, <span class="text-accent-2">"Go"</span>, <span class="text-accent-2">".NET"</span>, <span class="text-accent-2">"TypeScript"</span>, <span class="text-accent-2">"GCP"</span>];',
+    '&nbsp;&nbsp;role&nbsp;&nbsp;= <span class="text-accent-3">"Software Engineer @ Codimite"</span>;',
+    '&nbsp;&nbsp;stack = [<span class="text-accent-3">"Python"</span>, <span class="text-accent-3">"Go"</span>, <span class="text-accent-3">".NET"</span>, <span class="text-accent-3">"TypeScript"</span>, <span class="text-accent-3">"GCP"</span>];',
     '&nbsp;&nbsp;<span class="text-warn">build</span>() {',
-    '&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-accent">return</span> <span class="text-accent-2">"Scalable, secure &amp; production-ready systems 🚀"</span>;',
+    '&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-accent">return</span> <span class="text-accent-3">"Scalable, secure &amp; production-ready systems 🚀"</span>;',
     '&nbsp;&nbsp;}',
     '}',
     '',
@@ -111,6 +119,46 @@ import { profile } from '../data/content.js';
         setTimeout(type, 140);
       }
     }
-    setTimeout(type, 700);
+    setTimeout(type, 1600);
+  }
+
+  /* ---------- role scramble cycler ---------- */
+  const scrambleEl = document.getElementById('scramble');
+  if (scrambleEl && !reduce) {
+    const roles: string[] = JSON.parse(scrambleEl.dataset.roles || '[]');
+    const chars = '!<>-_\\/[]{}—=+*^?#________';
+    let idx = 0;
+
+    function scrambleTo(next: string) {
+      const from = scrambleEl!.textContent || '';
+      const len = Math.max(from.length, next.length);
+      const queue = Array.from({ length: len }, (_, i) => ({
+        from: from[i] || '',
+        to: next[i] || '',
+        start: Math.floor(Math.random() * 24),
+        end: Math.floor(Math.random() * 24) + 24,
+        char: '',
+      }));
+      let frame = 0;
+      function update() {
+        let out = '';
+        let done = 0;
+        for (const q of queue) {
+          if (frame >= q.end) { done++; out += q.to; }
+          else if (frame >= q.start) {
+            if (!q.char || Math.random() < 0.28) q.char = chars[Math.floor(Math.random() * chars.length)];
+            out += `<span class="text-dim">${q.char}</span>`;
+          } else out += q.from;
+        }
+        scrambleEl!.innerHTML = out;
+        if (done < queue.length) { frame++; requestAnimationFrame(update); }
+      }
+      update();
+    }
+
+    setInterval(() => {
+      idx = (idx + 1) % roles.length;
+      scrambleTo(roles[idx]);
+    }, 3400);
   }
 </script>

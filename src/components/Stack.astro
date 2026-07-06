@@ -10,22 +10,21 @@ const icons: Record<string, string> = {
   'DevOps & Cloud': '<path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path>',
 };
 ---
-<section id="stack" class="relative z-10 py-20">
+<section id="stack" class="relative z-10 py-24">
   <div class="max-w-content mx-auto px-6">
     <SectionHead num="02" title="technical arsenal" />
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
       {stack.map((s, i) => (
-        <div class="reveal group relative overflow-hidden rounded-2xl border border-line bg-panel/70 backdrop-blur-sm p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-accent/60 hover:shadow-[0_20px_50px_-28px_rgba(34,211,238,.55)]">
-          <span class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-          <span class="pointer-events-none absolute -right-8 -top-8 w-28 h-28 rounded-full bg-accent/10 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+        <div class="reveal conic-border group relative overflow-hidden rounded-2xl border border-line glass p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-accent/50 hover:shadow-[0_24px_60px_-30px_rgba(34,211,238,.5)]">
+          <span class="pointer-events-none absolute -right-8 -top-8 w-28 h-28 rounded-full bg-accent-2/15 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
 
           <div class="relative flex items-center gap-3 mb-5">
-            <span class="grid place-items-center w-9 h-9 rounded-lg border border-line bg-bg-2 text-accent group-hover:border-accent/50 group-hover:text-accent-2 transition-colors">
+            <span class="grid place-items-center w-10 h-10 rounded-xl border border-line bg-bg-2 text-accent group-hover:border-accent/50 group-hover:text-accent-2 transition-colors">
               <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={icons[s.group]} />
             </span>
             <div>
               <div class="font-mono text-[10.5px] text-dim tracking-wide">{String(i + 1).padStart(2, '0')}</div>
-              <h4 class="font-mono text-[14px] text-ink font-semibold leading-tight">{s.group}</h4>
+              <h4 class="font-display text-[15px] text-ink font-semibold leading-tight">{s.group}</h4>
             </div>
           </div>
 
